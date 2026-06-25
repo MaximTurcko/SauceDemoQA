@@ -1,4 +1,7 @@
+package tests;
+
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -20,5 +23,25 @@ public class CartTest extends BaseTest {
         softAssert.assertEquals(driver.findElement(By.cssSelector(".inventory_item_price")).getText(), "$29.99",
                 "Не правильная сумма");
         softAssert.assertAll();
+    }
+
+    @Test
+    public void checkCartContainsProduct() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.addProductToCart("Sauce Labs Bike Light");
+        productsPage.clickToCart();
+        Assert.assertEquals(cartPage.getProductName("Sauce Labs Bike Light"), "Sauce Labs Bike Light",
+                "Товар не найден в карзине");
+    }
+
+    @Test
+    public void checkRemoveButton() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.addProductToCart("Sauce Labs Bike Light");
+        productsPage.clickToCart();
+        cartPage.clickProductRemoveButton("Sauce Labs Bike Light");
+        Assert.assertTrue(cartPage.searchProduct("Sauce Labs Bike Light"), "Продукт найден после удаления");
     }
 }
