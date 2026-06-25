@@ -33,6 +33,8 @@ public class CartTest extends BaseTest {
         productsPage.clickToCart();
         Assert.assertEquals(cartPage.getProductName("Sauce Labs Bike Light"), "Sauce Labs Bike Light",
                 "Товар не найден в карзине");
+        Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bike Light"),"9.99",
+                "Не правильная цена");
     }
 
     @Test
@@ -42,6 +44,8 @@ public class CartTest extends BaseTest {
         productsPage.addProductToCart("Sauce Labs Bike Light");
         productsPage.clickToCart();
         cartPage.clickProductRemoveButton("Sauce Labs Bike Light");
-        Assert.assertTrue(cartPage.searchProduct("Sauce Labs Bike Light"), "Продукт найден после удаления");
+        Assert.assertFalse(cartPage.getProductsName().contains("Sauce Labs Bike Light"),
+                "Продукт не найден");
+
     }
 }
