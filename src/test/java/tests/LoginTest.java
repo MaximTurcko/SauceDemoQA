@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 public class LoginTest extends BaseTest {
 
 
-    @Test
+    @Test (testName = "Проверка валидного логина", description = "Удачный логин", priority = 5)
     public void checkSuccessLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
                 "Логин не выполнен");
     }
 
-    @Test
+    @Test(testName = "Проверка валидности с пустым паролем", description = "Негативный логин", priority = 1)
     public void checkLoginWithEmptyPassword() {
         loginPage.open();
         loginPage.login("standard_user", "");
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
                 "Не верная ошибка");
     }
 
-    @Test
+    @Test (testName = "Проверка валидности c пустым логином", description = "Негативный тест", priority = 2)
     public void checkLoginWithEmptyLogin() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
@@ -34,7 +34,7 @@ public class LoginTest extends BaseTest {
                 "Не верная ошибка");
     }
 
-    @Test
+    @Test (testName = "Проверка валидности с пустыми полями", description = "Негативный тест" , priority = 3)
     public void checkLoginWithEmptyFields() {
         loginPage.open();
         loginPage.login("", "");
@@ -43,7 +43,8 @@ public class LoginTest extends BaseTest {
                 "Не верная ошибка");
     }
 
-    @Test
+    @Test (testName = "Проверка валидности с одним символом в поле пароль",  description = "Негативный тест",
+            priority = 4)
     public void checkPasswordWithOneDigit() {
         loginPage.open();
         loginPage.login("standard_user", "1");

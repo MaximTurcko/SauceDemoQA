@@ -4,7 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProductsTest extends BaseTest {
-    @Test
+    @Test (testName = "Проверка валидности нажатия кнопки 'Add To Cart'", description = "Тест кнопки",
+    priority = 3)
     public void checkAddToCartButton() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -12,7 +13,7 @@ public class ProductsTest extends BaseTest {
         Assert.assertEquals(productsPage.getButtonsText("Sauce Labs Backpack"), "Remove");
     }
 
-    @Test
+    @Test (testName = "Проверка валидности нажатия кнопки 'Remove'", description = "Тест кнопки", priority = 2)
     public void checkRemoveButton() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -21,7 +22,7 @@ public class ProductsTest extends BaseTest {
         Assert.assertEquals(productsPage.getButtonsText("Sauce Labs Backpack"), "Add to cart");
     }
 
-    @Test
+    @Test (testName = "Проверка валидности нажатия кнопки 'Cart'", description = "Тест кнопки", priority = 1)
     public void checkCartButton() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
