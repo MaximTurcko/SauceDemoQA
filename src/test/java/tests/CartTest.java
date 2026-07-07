@@ -1,10 +1,16 @@
 package tests;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 public class CartTest extends BaseTest {
 
     @Test (testName = "Проверка наличия продукта в карзине", description = "Тест карзины", priority = 1)
+    @Epic("Корзина")
+    @Feature("Добавление товара")
+    @Story("Отображение товара в корзине")
     public void checkCartContainsProduct() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

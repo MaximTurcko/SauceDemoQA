@@ -19,7 +19,7 @@ public class BaseTest {
     CartPage cartPage;
 
     @Parameters({"browser"})
-    @BeforeMethod (alwaysRun = true)
+    @BeforeMethod (alwaysRun = true, description = "Открытие браузера")
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")){
             ChromeOptions options = new ChromeOptions();
@@ -40,7 +40,7 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
     public void tearDown() {
         driver.quit();
     }

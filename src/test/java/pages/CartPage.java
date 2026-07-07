@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,6 +35,7 @@ public class CartPage extends BasePage {
         return driver.findElement(By.xpath(String.format(PRODUCT, product))).getText();
     }
 
+    @Step("Нажатие копнки 'Remove' для товара с именем {product}")
     public void clickProductRemoveButton(String product) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, product))).click();
     }
@@ -54,10 +56,12 @@ public class CartPage extends BasePage {
                         product))).getText().replace("$", "");
     }
 
+    @Step("Нажатие копнки 'Checkout'")
     public void clickCheckoutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
+    @Step("Нажатие копнки 'Continue Shopping'")
     public void clickContinueShoppingButton() {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
@@ -74,7 +78,7 @@ public class CartPage extends BasePage {
     public String getCheckoutOverviewTitle() {
         return driver.findElement(TITLE_CHECKOUT_OVERVIEW).getText();
     }
-
+    @Step("Заполнение полей: Имя: {firstName}; Фамилия: {lastName}; Зип код: {zip}  и нажатие на кнопку 'Continue'")
     public void fillInCheckoutYourInformationData(String firstNane, String lastName, String zip) {
         driver.findElement(FIRST_NAME_FIELD).sendKeys(firstNane);
         driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
