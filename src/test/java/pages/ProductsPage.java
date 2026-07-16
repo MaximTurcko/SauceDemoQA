@@ -3,10 +3,22 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public ProductsPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CART_BUTTON));
+        return this;
+    }
+
+    @Override
+    public BasePage open() {
+        return null;
     }
 
     private static final By TITLE = By.cssSelector("[data-test = title]");
@@ -17,19 +29,23 @@ public class ProductsPage extends BasePage {
     public String getTitle() {
         return driver.findElement(TITLE).getText();
     }
+
     @Step("Добавление товара с именем: {product} в корзину")
-    public void addProductToCart(String product) {
+    public ProductsPage addProductToCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_REMOVE_TO_CART_BUTTON, product))).click();
+        return this;
     }
 
     @Step("Нажатие кнопки 'Remove' товара с именем: {product}")
-    public void removeProductFromCart(String product) {
+    public ProductsPage removeProductFromCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_REMOVE_TO_CART_BUTTON, product))).click();
+        return this;
     }
 
     @Step("Нажатие кнопки 'Корзина'")
-    public void clickToCart() {
+    public CartPage clickToCart() {
         driver.findElement(CART_BUTTON).click();
+        return new CartPage(driver);
     }
 
     public String getButtonsText(String product) {

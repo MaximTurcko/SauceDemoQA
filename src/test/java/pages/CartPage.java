@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,21 @@ public class CartPage extends BasePage {
     private static final String PRODUCT = "//*[text() = '%s']",
             REMOVE_BUTTON = "//*[text() = '%s']/ancestor::div[@class = 'cart_item_label']//button";
 
-    public String getTitle() {
-        return driver.findElement(TITLE).getText();
+    @Override
+    public CartPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+        return this;
     }
 
-    public String getProductName(String product) {
-        return driver.findElement(By.xpath(String.format(PRODUCT, product))).getText();
+    @Override
+    public CartPage open() {
+        return null;
     }
 
     @Step("Нажатие копнки 'Remove' для товара с именем {product}")
-    public void clickProductRemoveButton(String product) {
+    public CartPage clickProductRemoveButton(String product) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, product))).click();
+        return this;
     }
 
     public ArrayList<String> getProductsName() {
@@ -49,6 +54,14 @@ public class CartPage extends BasePage {
         return names;
     }
 
+    public String getTitle() {
+        return driver.findElement(TITLE).getText();
+    }
+
+    public String getProductName(String product) {
+        return driver.findElement(By.xpath(String.format(PRODUCT, product))).getText();
+    }
+
     public String getProductPrice(String product) {
         return driver.findElement(
                 By.xpath(String.format(
@@ -57,13 +70,15 @@ public class CartPage extends BasePage {
     }
 
     @Step("Нажатие копнки 'Checkout'")
-    public void clickCheckoutButton() {
+    public CartPage clickCheckoutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
+        return this;
     }
 
     @Step("Нажатие копнки 'Continue Shopping'")
-    public void clickContinueShoppingButton() {
+    public ProductsPage clickContinueShoppingButton() {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
+        return new ProductsPage(driver);
     }
 
     public String getCheckoutYourInformationTitle() {
