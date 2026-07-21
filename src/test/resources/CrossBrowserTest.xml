@@ -8,14 +8,14 @@
     <test name="Chrome">
         <classes>
             <class name="tests.CartTest"/>
-            <class name="tests.LocatorTest"/>
+            <class name="tests.LoginTest"/>
             <parameter name="browser" value="Chrome"/>
         </classes>
     </test>
 
     <test name="FireFox">
         <classes>
-            <class name="tests.LocatorTest"/>
+            <class name="tests.ProductsTest"/>
             <parameter name="browser" value="FireFox"/>
         </classes>
     </test>

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LoginPage;
@@ -19,7 +20,7 @@ public class BaseTest {
     CartPage cartPage;
 
     @Parameters({"browser"})
-    @BeforeMethod (alwaysRun = true)
+    @BeforeMethod (alwaysRun = true, description = "Открытие браузера")
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")){
             ChromeOptions options = new ChromeOptions();
@@ -40,8 +41,11 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
+    @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()){
+            AllureUtils.takeScreenshot(driver);
+        }
         driver.quit();
     }
 }
