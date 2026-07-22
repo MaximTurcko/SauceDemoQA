@@ -49,41 +49,41 @@ By.xpath("//tag[contains(text(),'text')]");
 - Подсказка: https://www.w3schools.com/cssref/css_selectors.asp
      */
 
-//    @Test
-//    public void checkLocator() {
-//        driver.get("https://www.saucedemo.com");
-//        driver.findElement(By.id("user-name"));
-//        driver.findElement(By.name("user-name"));
-//        driver.findElement(By.className("error-message-container"));
-//        driver.findElement(By.tagName("div"));
-//        driver.findElement(By.linkText("Swag Labs"));
-//        driver.findElement(By.partialLinkText("Swag"));
-//        driver.findElement(By.xpath(
-//                "(//input[@class='input_error form_input'])")).sendKeys("work");
-//         driver.findElement(By.xpath(
-//                "(//div[text()='Swag Labs'])")).getText();
-//        driver.findElement(By.xpath(
-//                "(//input[contains(@class, 'input_error')])"));
-//        driver.findElement(By.xpath("(//div[contains(text(), 'Swag')])"));
-//        driver.findElement(By.xpath("(//input[@class='input_error form_input']/ancestor::div)"));
-//        driver.findElement(By.xpath(
-//                "(//div[@class='form_column']/descendant::input[@class='input_error form_input'])"));
-//        driver.findElement(By.xpath(
-//                "(//div[@class='login_logo']/following-sibling::div)"));
-//        driver.findElement(By.xpath(
-//                "(//div[@class='login_wrapper']/preceding-sibling::div)"));
-//        driver.findElement(By.xpath(
-//                "(//div[@class='login_wrapper' and @data-test='login-container'])"));
-//        driver.findElement(By.cssSelector(".login_logo"));
-//        driver.findElement(By.cssSelector(".submit-button.btn_action"));
-//        driver.findElement(By.cssSelector(".login_wrapper-inner .form_column"));
-//        driver.findElement(By.cssSelector("#login-button"));
-//        driver.findElement(By.cssSelector("input"));
-//        driver.findElement(By.cssSelector("[type=text]"));
-//        driver.findElement(By.cssSelector("[type~=text]"));
-//        driver.findElement(By.cssSelector("[class|=login_credentials_wrap]"));
-//        driver.findElement(By.cssSelector("[class*=login]"));
-//    }
+    @Test(enabled = false)
+    public void checkLocator() {
+        driver.get("https://www.saucedemo.com");
+        driver.findElement(By.id("user-name"));
+        driver.findElement(By.name("user-name"));
+        driver.findElement(By.className("error-message-container"));
+        driver.findElement(By.tagName("div"));
+        driver.findElement(By.linkText("Swag Labs"));
+        driver.findElement(By.partialLinkText("Swag"));
+        driver.findElement(By.xpath(
+                "(//input[@class='input_error form_input'])")).sendKeys("work");
+         driver.findElement(By.xpath(
+                "(//div[text()='Swag Labs'])")).getText();
+        driver.findElement(By.xpath(
+                "(//input[contains(@class, 'input_error')])"));
+        driver.findElement(By.xpath("(//div[contains(text(), 'Swag')])"));
+        driver.findElement(By.xpath("(//input[@class='input_error form_input']/ancestor::div)"));
+        driver.findElement(By.xpath(
+                "(//div[@class='form_column']/descendant::input[@class='input_error form_input'])"));
+        driver.findElement(By.xpath(
+                "(//div[@class='login_logo']/following-sibling::div)"));
+        driver.findElement(By.xpath(
+                "(//div[@class='login_wrapper']/preceding-sibling::div)"));
+        driver.findElement(By.xpath(
+                "(//div[@class='login_wrapper' and @data-test='login-container'])"));
+        driver.findElement(By.cssSelector(".login_logo"));
+        driver.findElement(By.cssSelector(".submit-button.btn_action"));
+        driver.findElement(By.cssSelector(".login_wrapper-inner .form_column"));
+        driver.findElement(By.cssSelector("#login-button"));
+        driver.findElement(By.cssSelector("input"));
+        driver.findElement(By.cssSelector("[type=text]"));
+        driver.findElement(By.cssSelector("[type~=text]"));
+        driver.findElement(By.cssSelector("[class|=login_credentials_wrap]"));
+        driver.findElement(By.cssSelector("[class*=login]"));
+    }
 
 }
 
