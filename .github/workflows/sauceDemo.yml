@@ -34,6 +34,10 @@ jobs:
       with:
         ref: gh-pages
         path: gh-pages
+    - name: Check allure-results
+      run: |
+        ls -la target/allure-results/
+        echo "Allure results count: $(ls -1 target/allure-results/*.json 2>/dev/null | wc -l)"
     - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
