@@ -38,6 +38,10 @@ jobs:
       run: |
         ls -la target/allure-results/
         echo "Allure results count: $(ls -1 target/allure-results/*.json 2>/dev/null | wc -l)"
+    - name: Install Allure CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y allure
     - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
