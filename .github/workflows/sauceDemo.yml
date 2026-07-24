@@ -40,8 +40,10 @@ jobs:
         echo "Allure results count: $(ls -1 target/allure-results/*.json 2>/dev/null | wc -l)"
     - name: Install Allure CLI
       run: |
-        sudo apt-get update
-        sudo apt-get install -y allure
+        wget -qO- https://github.com/allure-framework/allure2/releases/latest/download/allure-2.29.0.tgz | tar -xz
+        sudo mv allure-2.29.0 /opt/allure
+        sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+        allure --version
     - name: Create empty Allure history
       run: |
         mkdir -p gh-pages/last-history
