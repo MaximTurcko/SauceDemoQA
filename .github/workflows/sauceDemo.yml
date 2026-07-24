@@ -37,11 +37,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Check allure-results
-        run: |
-          ls -la target/allure-results/
-          echo "Allure results count: $(ls -1 target/allure-results/*.json 2>/dev/null | wc -l)"
-
       - name: Install Allure CLI
         run: |
           curl -L -o allure-2.30.0.tgz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.30.0/allure-commandline-2.30.0.tgz
