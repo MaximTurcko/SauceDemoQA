@@ -40,7 +40,8 @@ jobs:
         echo "Allure results count: $(ls -1 target/allure-results/*.json 2>/dev/null | wc -l)"
     - name: Install Allure CLI
       run: |
-        wget -qO- https://github.com/allure-framework/allure2/releases/latest/download/allure-2.29.0.tgz | tar -xz
+        curl -L -o allure-2.29.0.tgz https://github.com/allure-framework/allure2/releases/latest/download/allure-2.29.0.tgz
+        tar -xzf allure-2.29.0.tgz
         sudo mv allure-2.29.0 /opt/allure
         sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
         allure --version
