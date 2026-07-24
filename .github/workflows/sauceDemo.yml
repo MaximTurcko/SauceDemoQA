@@ -45,11 +45,6 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
           allure --version
 
-      - name: Create empty Allure history
-        run: |
-          mkdir -p gh-pages/last-history
-          echo "[]" > gh-pages/last-history/history.json
-
       - name: Generate Allure Report
         run: |
           allure generate target/allure-results --clean -o allure-report
