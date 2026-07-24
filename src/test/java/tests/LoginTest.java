@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest {
     public void checkSuccessLogin() {
         loginPage.open()
                 .isPageOpened()
-                .login("standard_user", "secret_sauce")
+                .login(user, password)
                 .isPageOpened();
         assertEquals(productsPage.getTitle(),
                 "Products",
