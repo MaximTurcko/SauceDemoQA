@@ -42,6 +42,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y allure
+    - name: Create empty Allure history
+      run: |
+        mkdir -p gh-pages/last-history
+        echo "[]" > gh-pages/last-history/history.json
     - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
