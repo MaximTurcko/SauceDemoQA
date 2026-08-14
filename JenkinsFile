@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "maven 3.9.16"
+    }
+
+    parameters {
+        choice(choices: ['chrome', 'firefox', 'edge'], name: 'BROWSER')
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/MaximTurcko/SauceDemoQA.git'
+
+                // Run the build on a Unix agent. You must have Maven installed.
+                bat 'mvn clean test -Dbrowser=${params.BROWSER}'
+
+                // To run Maven on a Windows agent, use
+                // bat 'mvn -Dmaven.test.failure.ignore=true clean package'
+            }
+        }
+    }
+
+     post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
+            always {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                allure commandline: 'Allure-2.43.0', includeProperties: false, jdk: '',
+                resultPolicy: 'LEAVE_AS_IS', results: [[path: 'target/allure-results']]
+            }
+    }
+}
